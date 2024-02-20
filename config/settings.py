@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
 
-    'banners'
+    'banners',
+    'collection'
 ]
 
 MIDDLEWARE = [

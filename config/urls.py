@@ -45,6 +45,7 @@ admin.site.index_title = 'Добро пожаловать в администр�
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('banners/', include("banners.urls")),
+    path('collection/', include('collection.urls')),
 
 
 
