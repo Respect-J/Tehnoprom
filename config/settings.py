@@ -43,7 +43,9 @@ INSTALLED_APPS = [
 
     'banners',
     'collection',
-    'category'
+    'category',
+    'product',
+    'brand',
 ]
 
 MIDDLEWARE = [
