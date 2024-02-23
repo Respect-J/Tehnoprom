@@ -49,7 +49,7 @@ urlpatterns = [
     path('category/', include('category.urls')),
     path('product/', include("product.urls")),
     path('brand/', include('brand.urls')),
-
+    path('photos/', include("collection_img.urls")),
 
 
 
