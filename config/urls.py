@@ -47,6 +47,8 @@ urlpatterns = [
     path('banners/', include("banners.urls")),
     path('collection/', include('collection.urls')),
     path('category/', include('category.urls')),
+    path('product/', include("product.urls")),
+    path('brand/', include('brand.urls')),
 
 
 
