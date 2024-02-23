@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     'banners',
-    'collection'
+    'collection',
+    'category'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -56,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", "https://theeastcaravan.com"
+    "http://localhost:3000", "http://localhost:5173", "http://localhost:3001"
 ]
 
 CORS_ALLOW_METHODS = [

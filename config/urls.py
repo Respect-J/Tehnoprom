@@ -46,6 +46,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('banners/', include("banners.urls")),
     path('collection/', include('collection.urls')),
+    path('category/', include('category.urls')),
 
 
 
