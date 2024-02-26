@@ -5,8 +5,8 @@ from django.core.validators import FileExtensionValidator
 
 
 class ProductIMG(BaseModel):
-    category = models.ForeignKey(Product, on_delete=models.CASCADE)
-    img = models.ImageField( upload_to='img/productIMG/',
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='img/productIMG/',
         null=True,
         blank=True,
         validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])])
