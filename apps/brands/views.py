@@ -1,4 +1,5 @@
 from rest_framework import generics
+
 from .models import Brand
 from .serializers import BrandSerializer
 
@@ -11,5 +12,6 @@ class BrandListView(generics.ListCreateAPIView):
 class BrandRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+
 
 # Create your views here.

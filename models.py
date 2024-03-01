@@ -1,6 +1,7 @@
-from enum import Enum
-from django.db import models
 import uuid
+from enum import Enum
+
+from django.db import models
 
 
 class BaseModel(models.Model):

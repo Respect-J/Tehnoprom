@@ -6,7 +6,7 @@ from models import BaseModel
 
 class User(BaseModel):
     username = models.CharField(max_length=256, null=True, blank=True)
-    mainimg = models.ImageField(upload_to='users/', null=True, blank=True)
+    mainimg = models.ImageField(upload_to="users/", null=True, blank=True)
     password = models.CharField(max_length=256, null=True, blank=True)
 
     def save(self, *args, **kwargs):
