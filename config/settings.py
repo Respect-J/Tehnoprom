@@ -43,13 +43,13 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
 
-    'banners',
-    'collection',
-    'category',
-    'product',
-    'brand',
-    'collection_img',
-    'users'
+    'apps.banners',
+    'apps.collections',
+    'apps.categories',
+    'apps.products',
+    'apps.brands',
+    'apps.collection_images',
+    'apps.users'
 ]
 
 MIDDLEWARE = [
