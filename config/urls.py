@@ -44,13 +44,13 @@ admin.site.index_title = 'Добро пожаловать в администр�
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('banners/', include("banners.urls")),
-    path('collection/', include('collection.urls')),
-    path('category/', include('category.urls')),
-    path('product/', include("product.urls")),
-    path('brand/', include('brand.urls')),
-    path('photos/', include("collection_img.urls")),
-    path('users/', include('users.urls')),
+    path('banners/', include("apps.banners.urls")),
+    path('collections/', include('apps.collections.urls')),
+    path('categories/', include('apps.categories.urls')),
+    path('products/', include("apps.products.urls")),
+    path('brands/', include('apps.brands.urls')),
+    path('photos/', include("apps.collection_images.urls")),
+    path('users/', include('apps.users.urls')),
 
 
 
