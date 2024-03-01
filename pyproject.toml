@@ -1,0 +1,27 @@
+[tool.black]
+line-length = 119
+safe = "true"
+quiet = "true"
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \venv
+  | \env
+  | \.devcontainer
+  | \.vscode
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true
+line_length = 119
