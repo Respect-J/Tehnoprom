@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class CollectionImgConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.collection_images'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.collection_images"
