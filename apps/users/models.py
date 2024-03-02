@@ -14,7 +14,7 @@ class User(BaseModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.username
 
     def get_main_image_url(self):
         return self.mainimg.url if self.mainimg else None
