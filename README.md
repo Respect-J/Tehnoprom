@@ -1,24 +1,19 @@
 [![Django CI](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml)
+### Tehnoprom backend
 
-ЗАПУСК BACK_END ТЕХНОПРОМ
+Pre-requisites for local build:
+__docker__ and __docker-compose__
 
+-----------------------
 
+Migrate the database:
+`docker-compose run --rm backend python manage.py migrate`
 
-MAC os:
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser (дальше нужно следовать инструкциям и создать админа)
-python3 manage.py runserver
+Create your superuser:
+`docker-compose run --rm backend python manage.py createsuperuser`
 
+Run the server: `docker-compose up` and access on: _http://localhost:8000/admin_
 
-Windows os:
-python -m venv venv
-venv/Scripts/activate.ps1
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser (дальше нужно следовать инструкциям и создать админа)
-python manage.py runserver
+-----------------------
+In order to re-run:
+`git pull` and `docker-compose up --build`
