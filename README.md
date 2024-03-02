@@ -1,3 +1,5 @@
+[![Django CI](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml)
+
 ЗАПУСК BACK_END ТЕХНОПРОМ
 
 
