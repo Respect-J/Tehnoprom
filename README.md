@@ -1,4 +1,5 @@
-[![Django CI](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml)
+[![Tests](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/Respect-J/TexnopromBack/actions/workflows/django.yml)
+[![CI](https://github.com/avoure/tehnoprom/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/avoure/tehnoprom/actions/workflows/ci.yml)
 ### Tehnoprom backend
 
 Pre-requisites for local build:
