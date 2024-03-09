@@ -4,7 +4,7 @@ name: ci
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -26,6 +26,8 @@ jobs:
         python manage.py test
         
   deliver:
+    needs: build
+    if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
       -
