@@ -22,15 +22,18 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
+from config.settings import SITE_URL
+
 schema_view = get_schema_view(
     openapi.Info(
-        title="BACK_END FOR Технопром",
+        title="Tehnoprom E-Commerce backend API",
         default_version="v1",
-        description="МУРАД АКА СПЕЦИАЛЬНО ДЛЯ ВАС СДЕЛАЛ СВАГЕР",
+        description="OpenAPI swagger documentation",
         terms_of_service="https://www.yourapp.com/terms/",
-        contact=openapi.Contact(email="contact@yourapp.com"),
-        license=openapi.License(name="Your License"),
+        contact=openapi.Contact(email="respect@jasur.com"),
+        license=openapi.License(name="MIT"),
     ),
+    url=SITE_URL,
     public=True,
     permission_classes=[permissions.IsAuthenticated],
 )
