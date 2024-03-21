@@ -1,19 +1,32 @@
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import User
-from .serializers import UserSerializer
+from .models import UserModel
+from .serializers import CreateUserSerializer, UserSerializer
 
 
-class UserListCreateView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class UserCreateView(APIView):
     permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        create_user_serializer = CreateUserSerializer(data=request.data)
+        if UserModel.objects.filter(username=request.data["username"]).first():
+            return Response({"message": "user exists"}, status.HTTP_400_BAD_REQUEST)
+
+        if not create_user_serializer.is_valid():
+            return Response({"message": create_user_serializer.error_messages}, status.HTTP_400_BAD_REQUEST)
+        try:
+            create_user_serializer.save()
+        except Exception as e:
+            return Response({"message": str(e)}, status.HTTP_400_BAD_REQUEST)
+        return Response({"username": create_user_serializer.data["username"]}, status.HTTP_201_CREATED)
 
 
 class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
+    queryset = UserModel.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
