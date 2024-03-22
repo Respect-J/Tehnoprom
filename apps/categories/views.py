@@ -1,9 +1,11 @@
 from rest_framework import generics
 from apps.collections.models import Collection
 from .models import Category
+from apps.brands.models import Brand
 from django.shortcuts import get_object_or_404
 from .serializers import CategorySerializer
-
+from django.http import JsonResponse
+from rest_framework.response import Response
 
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
@@ -24,3 +26,31 @@ class CategoriesByCollectionUUID(generics.ListAPIView):
         return Category.objects.filter(collection=collection)
 
 
+class CollectionCategoryBrandView(generics.ListAPIView):
+
+    def get(self, request, *args, **kwargs):
+
+        try:
+            uuid = kwargs.get('collection_id', None)
+            collection = Collection.objects.get(id=uuid)
+        except Collection.DoesNotExist:
+            raise Http404
+
+
+        categories = Category.objects.filter(collection=collection)
+
+
+        result = []
+        for category in categories:
+
+            brands = Brand.objects.filter(category_id=category)
+            brands_data = [{'brand_id': brand.id, 'brand_title': brand.title} for brand in brands]
+
+
+            result.append({
+                'category_id': category.id,
+                'category_title': category.title,
+                'children': brands_data
+            })
+
+        return Response(result)
