@@ -2,16 +2,16 @@ from django.contrib.auth.hashers import check_password
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
-from .models import User
+from .models import UserModel
 
 
 class UserModelTest(TestCase):
     def setUp(self) -> None:
         photo = SimpleUploadedFile(name="test_image.jpg", content="", content_type="image/jpeg")
-        self.user = User.objects.create(username="testuser", password="password123", mainimg=photo)
+        self.user = UserModel.objects.create(username="testuser", password="password123", mainimg=photo)
 
     def test_user_creation(self):
-        self.assertTrue(isinstance(self.user, User))
+        self.assertTrue(isinstance(self.user, UserModel))
         self.assertTrue(self.user.id)
         self.assertTrue(self.user.created_at)
         self.assertTrue(self.user.updated_at)
