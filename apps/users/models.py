@@ -1,5 +1,5 @@
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, User
 from django.db import models
 
 from models import BaseModel
@@ -18,10 +18,6 @@ class UserModel(User):
 
     def get_main_image_url(self):
         return self.mainimg.url if self.mainimg else None
-
-    def save(self, *args, **kwargs):
-        self.password = make_password(self.password)
-        super().save(*args, **kwargs)
 
     class Meta:
         db_table = "users"
