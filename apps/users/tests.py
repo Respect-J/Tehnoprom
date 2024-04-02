@@ -8,7 +8,9 @@ from .models import UserModel
 class UserModelTest(TestCase):
     def setUp(self) -> None:
         photo = SimpleUploadedFile(name="test_image.jpg", content="", content_type="image/jpeg")
-        self.user = UserModel.objects.create(username="testuser", password="password123", mainimg=photo)
+        self.user = UserModel(username="testuser", mainimg=photo)
+        self.user.set_password("password123")
+        self.user.save()
 
     def test_user_creation(self):
         self.assertTrue(isinstance(self.user, UserModel))
