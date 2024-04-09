@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_yasg",
+    "payme",
     "apps.banners",
     "apps.collections",
     "apps.categories",
@@ -142,6 +143,16 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+
+PAYME: dict = {
+    "PAYME_ID": "payme-id",
+    "PAYME_KEY": "payme-key",
+    "PAYME_URL": "payme-checkout-url",
+    "PAYME_CALL_BACK_URL": "your-callback-url",  # merchant api callback url
+    "PAYME_MIN_AMOUNT": "payme-min-amount",  # integer field
+    "PAYME_ACCOUNT": "order-id",
+}
+
 
 LANGUAGE_CODE = "en-us"
 
