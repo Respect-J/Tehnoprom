@@ -53,6 +53,7 @@ urlpatterns = [
     path("brands/", include("apps.brands.urls")),
     path("photos/", include("apps.collection_images.urls")),
     path("users/", include("apps.users.urls")),
+    path("uzum/", include("apps.payment.uzum.urls")),
     path("payments/merchant/", PaymeCallBackAPIView.as_view()),
     path("pay-link/", GeneratePayLinkAPIView.as_view()),
     re_path(r"^swagger(?P<format>\.json|\.yaml)$", schema_view.without_ui(cache_timeout=0), name="schema-json"),

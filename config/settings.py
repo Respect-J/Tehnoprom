@@ -153,6 +153,7 @@ PAYME: dict = {
     "PAYME_ACCOUNT": "order-id",
 }
 
+UZUM: dict = {"UZUM_TOKEN": "test", "UZUM_BASE_URL": "url"}
 
 LANGUAGE_CODE = "en-us"
 
