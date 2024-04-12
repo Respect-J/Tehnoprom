@@ -5,15 +5,25 @@ from apps.brands.models import Brand
 from django.shortcuts import get_object_or_404
 from .serializers import CategorySerializer
 from django.http import JsonResponse
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.response import Response
+
 
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+    def get_permissions(self):
+
+        if self.request.method == "POST":
+            return [IsAdminUser()]
+        return [AllowAny()]
+
+
 
 class CategoryRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
+    permission_classes = [IsAdminUser]
     serializer_class = CategorySerializer
 
 

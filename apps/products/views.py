@@ -5,6 +5,7 @@ from apps.brands.models import Brand
 from apps.categories.models import Category
 from .models import Product
 from .serializers import ProductSerializer
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -18,9 +19,15 @@ class ProductListView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     pagination_class = StandardResultsSetPagination
 
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [IsAdminUser()]
+        return [AllowAny()]
+
 
 class ProductRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
+    permission_classes = [IsAdminUser]
     serializer_class = ProductSerializer
 
 
