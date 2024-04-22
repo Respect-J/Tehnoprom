@@ -24,11 +24,11 @@ class CreateOrderView(APIView):
     def post(self, request, *args, **kwargs):
         order = CreateOrder(**request.data)
         nasiya_api = NasiyaAPI()
-        return Response(nasiya_api.calculate_tariffs(order))
+        return Response(nasiya_api.create_order(order))
 
 
 class ConfirmContractView(APIView):
     def post(self, request, *args, **kwargs):
         contract = ConfirmContract(**request.data)
         nasiya_api = NasiyaAPI()
-        return Response(nasiya_api.calculate_tariffs(contract))
+        return Response(nasiya_api.confirm_contract(contract))
