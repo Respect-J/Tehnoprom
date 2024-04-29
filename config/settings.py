@@ -153,8 +153,8 @@ PAYME: dict = {
     "PAYME_ACCOUNT": "order-id",
 }
 
-UZUM: dict = {"UZUM_TOKEN": "test", "UZUM_BASE_URL": "url"}
-
+UZUM: dict = {"UZUM_TOKEN": os.getenv("UZUM_TOKEN"), "UZUM_BASE_URL": os.getenv("UZUM_BASE_URL")}
+print(UZUM)
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"

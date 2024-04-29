@@ -16,8 +16,7 @@ class NasiyaAPI:
         base_url: str = UZUM.get("UZUM_BASE_URL")
 
         headers: dict = {"Authorization": f"Bearer {token}"}
-        full_url: str = f"{base_url}/{route}"
-
+        full_url: str = f"{base_url}{route}"
         response: requests.Response = requests.post(url=full_url, headers=headers, json=payload)
         return {
             "status": response.status_code,
