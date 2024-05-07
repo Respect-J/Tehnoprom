@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "apps.brands",
     "apps.collection_images",
     "apps.users",
+    "apps.orders",
 ]
 
 MIDDLEWARE = [
@@ -145,16 +146,17 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 PAYME: dict = {
-    "PAYME_ID": "payme-id",
-    "PAYME_KEY": "payme-key",
-    "PAYME_URL": "payme-checkout-url",
-    "PAYME_CALL_BACK_URL": "your-callback-url",  # merchant api callback url
-    "PAYME_MIN_AMOUNT": "payme-min-amount",  # integer field
-    "PAYME_ACCOUNT": "order-id",
+    "PAYME_ID": os.getenv("PAYME_MERCHANT_ID"),
+    "PAYME_KEY": os.getenv("PAYME_KEY"),
+    "PAYME_URL": os.getenv("PAYME_URL"),
+    "PAYME_CALL_BACK_URL": os.getenv("PAYME_CALL_BACK_URL"),
+    "PAYME_MIN_AMOUNT": os.getenv("PAYME_MIN_AMOUNT", 1),
+    "PAYME_ACCOUNT": "order_id",
 }
 
+ORDER_MODEL = "apps.orders.models.Order"
 UZUM: dict = {"UZUM_TOKEN": os.getenv("UZUM_TOKEN"), "UZUM_BASE_URL": os.getenv("UZUM_BASE_URL")}
-print(UZUM)
+
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -193,6 +195,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# APPEND_SLASH=False
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
