@@ -1,5 +1,4 @@
 import uuid
-from enum import Enum
 
 from django.db import models
 
@@ -11,10 +10,3 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
-
-
-class PaymentProvider(models.IntegerChoices):
-    UNKNOWN = 0
-    PAYME = 1
-    UZUM_PAY = 2
-    UZUM_NASIYA = 3
