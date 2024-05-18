@@ -26,7 +26,5 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super(CustomTokenObtainPairSerializer, self).validate(attrs)
-        # data.update({"user": self.user.username})
         data.update({"user_id": self.user.id})
-        # and everything else you want to send in the response
         return data

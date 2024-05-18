@@ -36,14 +36,4 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
-        refresh = response.data.get("refresh")
-        access = response.data.get("access")
-        user_id = response.data.get("user_id")
-
-        response.data = {
-            "user_id": user_id,
-            "access": access,
-            "refresh": refresh,
-        }
-
         return response
