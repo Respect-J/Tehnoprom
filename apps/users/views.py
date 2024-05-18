@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import UserModel
-from .serializers import CreateUserSerializer, UserSerializer
+from .serializers import CreateUserSerializer, CustomTokenObtainPairSerializer, UserSerializer
 
 
 class UserCreateView(APIView):
@@ -32,11 +32,13 @@ class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         refresh = response.data.get("refresh")
         access = response.data.get("access")
-        user_id = request.user.id
+        user_id = response.data.get("user_id")
 
         response.data = {
             "user_id": user_id,
