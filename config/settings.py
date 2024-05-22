@@ -200,6 +200,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-# MEDIA_ROOT = "/home/backtexn/www/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = "/home/backtexn/www/media/"
 SITE_URL = os.getenv("SITE_URL", "")
