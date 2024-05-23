@@ -1,12 +1,15 @@
 from django.db import models
 
 from apps.users.models import UserModel
+from apps.products.models import Product
 from models import BaseModel
 
 
 class Order(BaseModel):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
+    phone_number = models.CharField(max_length=13, blank=True)
     amount = models.IntegerField(default=0)
     delivery_address = models.CharField(max_length=255, blank=True)
     is_paid = models.BooleanField(default=False)
