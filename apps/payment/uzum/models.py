@@ -21,6 +21,9 @@ class NasiyaProduct:
     price: int
     amount: int
     product_id: int
+    name: str = "Product"
+    unit_id: int = 1
+    category: str = "1"
 
 
 @dataclass
@@ -33,8 +36,8 @@ class CalculateTariff:
 class CreateOrder:
     user_id: int
     period: str
-    callback: str
     products: list[NasiyaProduct]
+    callback: str = ""
 
 
 @dataclass
