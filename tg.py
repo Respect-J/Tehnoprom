@@ -5,7 +5,7 @@ from config.settings import TELEGRAM
 
 def send_message(order_id: str):
     bot_key: str = TELEGRAM.get("TOKEN")
-    chat_id: str = TELEGRAM.get("CHAT_ID")
+    chat_id: int = TELEGRAM.get("CHAT_ID")
 
     url: str = f"https://api.telegram.org/bot{bot_key}/sendMessage"
     message: str = f"Заказ номер {order_id} оплачен"
