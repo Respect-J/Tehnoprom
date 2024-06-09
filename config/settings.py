@@ -157,6 +157,11 @@ PAYME: dict = {
 ORDER_MODEL = "apps.orders.models.Order"
 UZUM: dict = {"UZUM_TOKEN": os.getenv("UZUM_TOKEN"), "UZUM_BASE_URL": os.getenv("UZUM_BASE_URL")}
 
+TELEGRAM: dict = {
+    "TOKEN": os.getenv("TELEGRAM_BOT_TOKEN"),
+    "CHAT_ID": os.getenv("TELEGRAM_CHAT_ID"),
+}
+
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"

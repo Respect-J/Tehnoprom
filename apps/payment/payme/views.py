@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.orders.models import Order
+from tg import send_message
 
 from .serializers import GeneratePayLinkSerializer
 
@@ -48,6 +49,10 @@ class PaymeCallBackAPIView(MerchantAPIView):
         order = Order.objects.filter(pk=order_id).first()
         order.is_paid = True
         order.save()
+        try:
+            send_message(order_id=order_id)
+        except Exception as e:
+            print(f"Failed to send telegram message to group. err: {e}")
         print(f"perform_transaction for order_id: {order_id}, response: {action}")
 
     def cancel_transaction(self, order_id, action, *args, **kwargs) -> None:
