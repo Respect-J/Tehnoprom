@@ -50,7 +50,7 @@ class PaymeCallBackAPIView(MerchantAPIView):
         order.is_paid = True
         order.save()
         try:
-            send_message(order_id=order_id)
+            send_message(order)
         except Exception as e:
             print(f"Failed to send telegram message to group. err: {e}")
         print(f"perform_transaction for order_id: {order_id}, response: {action}")
