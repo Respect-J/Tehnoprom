@@ -5,7 +5,7 @@ from .serializers import CharactericSerializer
 from apps.products.models import Product
 
 
-class CharactericVIEW(generics.ListAPIView):
+class CharactericView(generics.ListAPIView):
     serializer_class = CharactericSerializer
 
     def get_queryset(self):

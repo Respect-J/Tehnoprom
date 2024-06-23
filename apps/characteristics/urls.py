@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import CharactericVIEW
+from .views import CharactericView
 
 urlpatterns = [
-    path("<uuid:product_id>/", CharactericVIEW.as_view(), name="get-charasteric"),
+    path("<uuid:product_id>/", CharactericView.as_view(), name="get-charasteric"),
 ]
