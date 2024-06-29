@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     "apps.collection_images",
     "apps.users",
     "apps.orders",
-    "apps.characteristics"
+    "apps.characteristics",
+    'apps.installment'
 ]
 
 MIDDLEWARE = [
