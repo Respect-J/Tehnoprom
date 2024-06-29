@@ -55,6 +55,7 @@ urlpatterns = [
     path("photos/", include("apps.collection_images.urls")),
     path("users/", include("apps.users.urls")),
     path("uzum/", include("apps.payment.uzum.urls")),
+    path('installment', include("apps.installment.urls")),
     path("characteristics/", include("apps.characteristics.urls")),
     path("payments/merchant/", PaymeCallBackAPIView.as_view()),
     path("pay-link/", GeneratePayLinkAPIView.as_view()),
