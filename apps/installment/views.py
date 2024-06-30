@@ -34,9 +34,10 @@ class CalculateInstallmentView(APIView):
 
         for installment in installments:
             monthly_payment = calculate_annuity_payment(total_amount, installment.percent, months)
+            logo_url = request.build_absolute_uri(installment.logo.url)
             response_data.append({
                 "title": installment.title,
-                "logo": installment.logo.url,
+                "logo": logo_url,
                 "percent": installment.percent,
                 "monthly_payment": monthly_payment
             })
