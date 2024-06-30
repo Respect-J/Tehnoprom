@@ -16,6 +16,7 @@ class Product(BaseModel):
     package_code = models.CharField(max_length=256, null=True, blank=True)
     code = models.CharField(max_length=256, null=True, blank=True)
     price = models.DecimalField(max_digits=100, decimal_places=2, null=True, blank=True)
+    priceusd = models.CharField(max_length=100, null=True, blank=True, default=0)
     vat_percent = models.DecimalField(max_digits=100, decimal_places=0, null=True, blank=True)
 
     def __str__(self):
