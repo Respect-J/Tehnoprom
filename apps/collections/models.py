@@ -10,3 +10,7 @@ class Collection(BaseModel):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "коллекция"
+        verbose_name_plural = "коллекции"

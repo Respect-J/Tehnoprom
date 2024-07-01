@@ -9,6 +9,10 @@ class Characteric(BaseModel):
     def __str__(self):
         return f"Characteristics for {self.product}"
 
+    class Meta:
+        verbose_name = "характеристики"
+        verbose_name_plural = "характеристики"
+
 
 class CharacteristicItem(models.Model):
     characteristic = models.ForeignKey(Characteric, on_delete=models.CASCADE, related_name='items')
@@ -17,3 +21,8 @@ class CharacteristicItem(models.Model):
 
     def __str__(self):
         return f"{self.name}: {self.value}"
+
+    class Meta:
+        verbose_name = "характеристики"
+        verbose_name_plural = "характеристики"
+

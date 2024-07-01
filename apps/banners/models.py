@@ -10,3 +10,7 @@ class Banner(BaseModel):
 
     def __str__(self):
         return self.title_ru
+
+    class Meta:
+        verbose_name = "Баннер"
+        verbose_name_plural = "Баннеры"
