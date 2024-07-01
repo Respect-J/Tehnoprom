@@ -5,10 +5,10 @@ from models import BaseModel
 
 
 class Category(BaseModel):
-    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
-    title = models.CharField(max_length=256, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    img = models.ImageField(upload_to="img/categories/", null=True, blank=True)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, verbose_name="Коллекция")
+    title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название")
+    description = models.TextField(null=True, blank=True, verbose_name="Описание")
+    img = models.ImageField(upload_to="img/categories/", null=True, blank=True, verbose_name="Картинка")
 
     def __str__(self):
         return self.title

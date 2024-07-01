@@ -6,18 +6,19 @@ from models import BaseModel
 
 
 class Product(BaseModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    title = models.CharField(max_length=256, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    mainimg = models.ImageField(upload_to="img/products/", null=True, blank=True)
-    stock_quantity = models.PositiveIntegerField(null=True, blank=True, default=0)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория товара")
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Бренд товара")
+    title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название товара")
+    description = models.TextField(null=True, blank=True, verbose_name="Описание товара")
+    mainimg = models.ImageField(upload_to="img/products/", null=True, blank=True, verbose_name="Главная картинка")
+    stock_quantity = models.PositiveIntegerField(null=True, blank=True, default=0,
+                                                 verbose_name="Количество товара (не обязательно для заполнения)")
     # payment parameters
-    package_code = models.CharField(max_length=256, null=True, blank=True)
-    code = models.CharField(max_length=256, null=True, blank=True)
-    price = models.DecimalField(max_digits=100, decimal_places=2, null=True, blank=True)
-    priceusd = models.CharField(max_length=100, null=True, blank=True, default=0)
-    vat_percent = models.DecimalField(max_digits=100, decimal_places=0, null=True, blank=True)
+    package_code = models.CharField(max_length=256, null=True, blank=True, verbose_name="Код упаковки товара")
+    code = models.CharField(max_length=256, null=True, blank=True, verbose_name="Код товара")
+    price = models.DecimalField(max_digits=100, decimal_places=2, null=True, blank=True, verbose_name="Цена товара")
+    priceusd = models.CharField(max_length=100, null=True, blank=True, default=0, verbose_name="Цена в долларах")
+    vat_percent = models.DecimalField(max_digits=100, decimal_places=0, null=True, blank=True, verbose_name="НДС")
 
     def __str__(self):
         return self.title
