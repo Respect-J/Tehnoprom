@@ -18,4 +18,4 @@ class ProductimegesListView(generics.ListAPIView):
 
     def get_queryset(self):
         product_id = self.kwargs["product_id"]
-        return ProductIMG.objects.filter(product_id=product_id)
+        return ProductIMG.objects.filter(category_id=product_id)
