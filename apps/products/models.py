@@ -1,13 +1,14 @@
 from django.db import models
 
-from apps.brands.models import Brand
+from apps.brands.models import BrandForCategory, Brands
 from apps.categories.models import Category
 from models import BaseModel
 
 
 class Product(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория товара")
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name="Бренд товара")
+    brandcategory = models.ForeignKey(BrandForCategory, on_delete=models.CASCADE, verbose_name="Бренд категории товара")
+    brands = models.ForeignKey(Brands, on_delete=models.CASCADE, verbose_name="Бренд")
     title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название товара")
     description = models.TextField(null=True, blank=True, verbose_name="Описание товара")
     mainimg = models.ImageField(upload_to="img/products/", null=True, blank=True, verbose_name="Главная картинка")

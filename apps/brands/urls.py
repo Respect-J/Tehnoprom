@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import BrandListView, BrandRetrieveUpdateDelete, BrandsByCategoriUUID
+from .views import BrandListView, BrandsByCategoriUUID, BrandView
 
 urlpatterns = [
-    path("", BrandListView.as_view(), name="Brand-get-create"),
+    path("", BrandView.as_view(), name="Brand-get"),
     path('category/<uuid:category_id>/', BrandsByCategoriUUID.as_view(), name='brand-categories'),
-    path("<uuid:pk>/", BrandRetrieveUpdateDelete.as_view(), name="Brand-retrieve-update-delete"),
+    path('categorybrands/', BrandListView.as_view(), name='brand-categories'),
+
 ]
