@@ -1,7 +1,7 @@
 from rest_framework import generics
 from apps.collections.models import Collection
 from .models import Category
-from apps.brands.models import Brand
+from apps.brands.models import BrandForCategory
 from django.shortcuts import get_object_or_404
 from .serializers import CategorySerializer
 from django.http import JsonResponse
@@ -9,21 +9,8 @@ from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.response import Response
 
 
-class CategoryListView(generics.ListCreateAPIView):
+class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
-    def get_permissions(self):
-
-        if self.request.method == "POST":
-            return [IsAdminUser()]
-        return [AllowAny()]
-
-
-
-class CategoryRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    permission_classes = [IsAdminUser]
     serializer_class = CategorySerializer
 
 
@@ -53,7 +40,7 @@ class CollectionCategoryBrandView(generics.ListAPIView):
         result = []
         for category in categories:
 
-            brands = Brand.objects.filter(category_id=category)
+            brands = BrandForCategory.objects.filter(category_id=category)
             brands_data = [{'brand_id': brand.id, 'brand_title': brand.title} for brand in brands]
 
 

@@ -1,5 +1,6 @@
 from django.contrib import admin
 
-from .models import Brand
+from .models import BrandForCategory, Brands
 
-admin.site.register(Brand)
+admin.site.register(BrandForCategory)
+admin.site.register(Brands)
