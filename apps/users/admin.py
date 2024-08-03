@@ -2,6 +2,11 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .models import UserModel
+import django.contrib.auth.models
+from django.contrib import auth
+
+admin.site.unregister(auth.models.User)
+admin.site.unregister(auth.models.Group)
 
 
 @admin.register(UserModel)
