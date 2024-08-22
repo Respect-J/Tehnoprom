@@ -11,7 +11,7 @@ from apps.products.models import Product
 class CalculateInstallmentView(APIView):
     def get(self, request, format=None):
         product_id = request.query_params.get('product_id')
-        months = request.query_params.get('months')
+        months = request.query_params.get('months', 6)
 
         if product_id is None or months is None:
             return Response({"error": "Product ID and months are required"}, status=status.HTTP_400_BAD_REQUEST)
