@@ -37,19 +37,30 @@ class Product(BaseModel):
             price = Decimal(self.price)
             discount_percent = Decimal(self.discount_percent)
 
-            # Проверяем, что discount_percent и price не пустые и корректные
+
             if discount_percent == Decimal(0):
                 return 0
 
             discount = (price * discount_percent) / Decimal(100)
             final_price = price - discount
 
-            # Округляем цену до двух знаков после запятой
+            #
             return final_price.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
         except (InvalidOperation, TypeError, ValueError):
-            # Если произошла ошибка, вернем исходную цену
+
             return self.price
 
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
+
+class PopularProduct(BaseModel):
+    product = models.ManyToManyField(Product, verbose_name="популярные товары")
+
+    def __str__(self):
+        return f"Группа популярных товаров"
+
+    class Meta:
+        verbose_name = "Популярные товары"
+        verbose_name_plural = "Популярные товары"
