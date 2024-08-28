@@ -8,7 +8,7 @@ class Characteric(BaseModel):
                                 verbose_name="выберите товар")
 
     def __str__(self):
-        return f"Characteristics for {self.product}"
+        return f"характеристики для товара {self.product}"
 
     class Meta:
         verbose_name = "характеристики"

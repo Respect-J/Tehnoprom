@@ -12,4 +12,4 @@ class CharactericAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Characteric, CharactericAdmin)
-admin.site.register(CharacteristicItem)
+# admin.site.register(CharacteristicItem)
