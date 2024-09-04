@@ -15,3 +15,14 @@ class Category(BaseModel):
     class Meta:
         verbose_name = "категория"
         verbose_name_plural = "категории"
+
+
+class PopularCategory(BaseModel):
+    categorys = models.ManyToManyField(Category, verbose_name="популярные категории")
+
+    def __str__(self):
+        return f"Группа популярных категория"
+
+    class Meta:
+        verbose_name = "Популярные категории"
+        verbose_name_plural = "Популярные категории"

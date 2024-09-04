@@ -1,11 +1,9 @@
 from rest_framework import generics
 from apps.collections.models import Collection
-from .models import Category
+from .models import Category, PopularCategory
 from apps.brands.models import BrandForCategory
 from django.shortcuts import get_object_or_404
-from .serializers import CategorySerializer
-from django.http import JsonResponse
-from rest_framework.permissions import IsAdminUser, AllowAny
+from .serializers import CategorySerializer, PopularCategorySerializer
 from rest_framework.response import Response
 
 
@@ -51,3 +49,8 @@ class CollectionCategoryBrandView(generics.ListAPIView):
             })
 
         return Response(result)
+
+
+class PopularCategoryListView(generics.ListAPIView):
+    queryset = PopularCategory.objects.all()
+    serializer_class = PopularCategorySerializer
