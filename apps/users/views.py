@@ -24,16 +24,26 @@ class UserCreateView(APIView):
             return Response({"message": str(e)}, status.HTTP_400_BAD_REQUEST)
         return Response({"username": create_user_serializer.data["username"]}, status.HTTP_201_CREATED)
 
-
-class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserModel.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
-
-
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         return response
+
+
+
+class VerifyPhoneView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        phone_number = request.data.get("phone_number")
+        verification_code = request.data.get("verification_code")
+
+        user = UserModel.objects.filter(phone_number=phone_number).first()
+
+        if user and user.verification_code == verification_code:
+            user.is_phone_verified = True
+            user.save()
+            return Response({"message": "Телефон подтверждён"}, status=status.HTTP_200_OK)
+        return Response({"message": "Неверный код или телефон"}, status=status.HTTP_400_BAD_REQUEST)
