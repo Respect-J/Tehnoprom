@@ -1,6 +1,8 @@
+from random import random
+
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+from .api import send_verification_sms
 from .models import UserModel
 
 
@@ -13,13 +15,22 @@ class UserSerializer(serializers.ModelSerializer):
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ["username", "password"]
+        fields = ["username", "password", "phone_number"]
 
     def create(self, validated_data):
         password = validated_data.pop("password")
         user = UserModel(**validated_data)
         user.set_password(password)
-        user.save()
+
+        verification_code = "Это тест от Eskiz"
+        user.verification_code = verification_code
+
+
+        if send_verification_sms(user.phone_number, verification_code):
+            user.save()
+        else:
+            raise serializers.ValidationError("Не удалось отправить SMS")
+
         return user
 
 
