@@ -1,8 +1,8 @@
+import os
+
 import requests
 
-token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjc0MzY1MjIsImlhdCI6MTcyNDg0NDUyMiwicm9sZSI6InRl" \
-        "c3QiLCJzaWduIjoiODRmMWU3NjJkZTRhMWU4N2JlODJkZmYxMTUwNGQ2ZmZkNjc4ZmRhZTAxNTY4MjhkNzU2OWU0YWYyMmYyZTg3NCIsI" \
-        "nN1YiI6IjgyNzkifQ.Ql8Xlx04kJKN_EOak9qM29fXCFDPkaqhXyq3t8fRtEE"
+token = os.getenv("TOKEN", "TOKEN")
 headers = {
     'Authorization': f'Bearer {token}',
 }
