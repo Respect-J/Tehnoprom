@@ -22,7 +22,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user = UserModel(**validated_data)
         user.set_password(password)
 
-        verification_code = "Это тест от Eskiz"
+        verification_code = str(random.randint(100000, 999999))
         user.verification_code = verification_code
 
 

@@ -12,7 +12,7 @@ def send_verification_sms(phone_number, verification_code):
     url = "https://notify.eskiz.uz/api/message/sms/send"
     payload = {
         "mobile_phone": phone_number,
-        "message": verification_code,
+        "message": f"Код подтверждения для регистрации на сайте texnoprom.net.uz: {verification_code}",
         "from": "4546",
         "callback_url": ""
 
