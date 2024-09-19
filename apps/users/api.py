@@ -14,7 +14,7 @@ def send_verification_sms(phone_number, verification_code):
         "mobile_phone": phone_number,
         "message": f"Код подтверждения для регистрации на сайте texnoprom.net.uz: {verification_code}",
         "from": "4546",
-        "callback_url": ""
+        "callback_url": "http://0000.uz/test.php"
 
     }
     response = requests.post(url, data=payload, headers=headers)

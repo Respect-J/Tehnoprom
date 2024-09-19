@@ -1,5 +1,5 @@
-from rest_framework import generics, status
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import status
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -12,17 +12,28 @@ class UserCreateView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
+
+        if "username" not in request.data:
+            return Response({"message": "Username is required"}, status.HTTP_400_BAD_REQUEST)
+
+        username = request.data["username"]
+
+        if UserModel.objects.filter(username=username).first():
+            return Response({"message": "User exists"}, status.HTTP_400_BAD_REQUEST)
+
         create_user_serializer = CreateUserSerializer(data=request.data)
-        if UserModel.objects.filter(username=request.data["username"]).first():
-            return Response({"message": "user exists"}, status.HTTP_400_BAD_REQUEST)
 
         if not create_user_serializer.is_valid():
-            return Response({"message": create_user_serializer.error_messages}, status.HTTP_400_BAD_REQUEST)
+            return Response({"message": create_user_serializer.errors}, status.HTTP_400_BAD_REQUEST)
+
         try:
+
             create_user_serializer.save()
         except Exception as e:
             return Response({"message": str(e)}, status.HTTP_400_BAD_REQUEST)
+
         return Response({"username": create_user_serializer.data["username"]}, status.HTTP_201_CREATED)
+
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
