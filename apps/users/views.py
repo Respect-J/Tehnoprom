@@ -3,7 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserModel
 from .serializers import CreateUserSerializer, CustomTokenObtainPairSerializer, UserSerializer
 
@@ -43,7 +43,6 @@ class MyTokenObtainPairView(TokenObtainPairView):
         return response
 
 
-
 class VerifyPhoneView(APIView):
     permission_classes = [AllowAny]
 
@@ -56,5 +55,16 @@ class VerifyPhoneView(APIView):
         if user and user.verification_code == verification_code:
             user.is_phone_verified = True
             user.save()
-            return Response({"message": "Телефон подтверждён"}, status=status.HTTP_200_OK)
+
+            # Генерация JWT токенов
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+
+            return Response({
+                "refresh": str(refresh),
+                "access": access_token,
+                "user_id": user.id,
+                "message": "Телефон подтверждён"
+            }, status=status.HTTP_200_OK)
+
         return Response({"message": "Неверный код или телефон"}, status=status.HTTP_400_BAD_REQUEST)
