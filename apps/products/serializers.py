@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Product, PopularProduct
+from .models import Product, PopularProduct, DayProduct
 from decimal import Decimal, getcontext
+
 
 def calculate_annuity_payment(P, monthly_rate, months):
 
@@ -34,11 +35,17 @@ class ProductSerializer(serializers.ModelSerializer):
         return None
 
 
-
-
 class PopularProductSerializer(serializers.ModelSerializer):
     products = ProductSerializer(source='product', many=True)
 
     class Meta:
         model = PopularProduct
+        fields = ['id', 'products']
+
+
+class DayProductSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(source='product', many=True)
+
+    class Meta:
+        model = DayProduct
         fields = ['id', 'products']

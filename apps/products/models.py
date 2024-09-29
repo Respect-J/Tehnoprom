@@ -64,3 +64,14 @@ class PopularProduct(BaseModel):
     class Meta:
         verbose_name = "Популярные товары"
         verbose_name_plural = "Популярные товары"
+
+
+class DayProduct(BaseModel):
+    product = models.ManyToManyField(Product, verbose_name="популярные товары")
+
+    def __str__(self):
+        return f"Товары дня"
+
+    class Meta:
+        verbose_name = "Товар дня"
+        verbose_name_plural = "Товар дня"

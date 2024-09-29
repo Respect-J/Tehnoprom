@@ -15,6 +15,9 @@ class ProductIMG(BaseModel):
     def get_image_url(self):
         return self.img.url if self.img else None
 
+    def __str__(self):
+        return f"Доп. фото для товара {self.product_id.title}"
+
     class Meta:
         verbose_name = "Фото товаров"
         verbose_name_plural = "Фото товаров"

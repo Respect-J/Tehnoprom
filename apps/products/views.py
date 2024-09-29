@@ -3,8 +3,8 @@ from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from apps.brands.models import BrandForCategory, Brands
 from apps.categories.models import Category
-from .models import Product, PopularProduct
-from .serializers import ProductSerializer, PopularProductSerializer
+from .models import Product, PopularProduct, DayProduct
+from .serializers import ProductSerializer, PopularProductSerializer, DayProductSerializer
 from rest_framework.permissions import IsAdminUser, AllowAny
 
 
@@ -64,3 +64,8 @@ class PopularProductListView(generics.ListAPIView):
     queryset = PopularProduct.objects.all()
     serializer_class = PopularProductSerializer
     pagination_class = StandardResultsSetPagination
+
+
+class DayProductListView(generics.ListAPIView):
+    queryset = DayProduct.objects.all()
+    serializer_class = DayProductSerializer
