@@ -17,13 +17,13 @@ def calculate_annuity_payment(P, monthly_rate, months):
 
 class ProductSerializer(serializers.ModelSerializer):
     discounted_price = serializers.ReadOnlyField()
-    instalments = serializers.SerializerMethodField()
+    installment = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = "__all__"
 
-    def get_instalments(self, obj):
+    def get_installment(self, obj):
 
         price = int(obj.price)
         monthly_rate = 5
