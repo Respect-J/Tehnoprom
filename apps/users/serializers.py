@@ -17,6 +17,11 @@ class CreateUserSerializer(serializers.ModelSerializer):
         model = UserModel
         fields = ["username", "password", "phone_number"]
 
+    def validate_phone_number(self, value):
+        if UserModel.objects.filter(phone_number=value).exists():
+            raise serializers.ValidationError("Пользователь с таким номером телефона уже существует.")
+        return value
+
     def create(self, validated_data):
         password = validated_data.pop("password")
         user = UserModel(**validated_data)
