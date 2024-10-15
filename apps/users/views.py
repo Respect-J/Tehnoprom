@@ -111,10 +111,20 @@ class ResetPasswordView(APIView):
         user = UserModel.objects.filter(phone_number=phone_number, verification_code=verification_code).first()
 
         if user:
-            # Установка нового пароля
+
             user.set_password(new_password)
-            user.verification_code = None  # Очистить код, чтобы его нельзя было использовать повторно
+            user.verification_code = None
             user.save()
-            return Response({"message": "Пароль успешно изменен"}, status=status.HTTP_200_OK)
+
+
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+
+            return Response({
+                "refresh": str(refresh),
+                "access": access_token,
+                "user_id": user.id,
+                "message": "Пароль успешно сброшен"
+            }, status=status.HTTP_200_OK)
 
         return Response({"message": "Неверный код или номер телефона"}, status=status.HTTP_400_BAD_REQUEST)

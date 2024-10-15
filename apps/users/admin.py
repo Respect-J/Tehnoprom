@@ -17,8 +17,7 @@ class CustomUserAdmin(UserAdmin):
         "password",
         "first_name",
         "last_name",
-        "email",
         "is_active",
-        "user_permissions",
-        "groups",
+        "is_phone_verified",
+        "phone_number"
     ]
