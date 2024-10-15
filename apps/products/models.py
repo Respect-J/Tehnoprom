@@ -16,6 +16,8 @@ class Product(BaseModel):
                                                  verbose_name="Количество товара (не обязательно для заполнения)")
     discount_percent = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0,
                                            verbose_name="Процент скидки")
+    seo_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Ключ слово для СЕО")
+    title_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Title слово для СЕО")
     # payment parameters
     package_code = models.CharField(max_length=256, null=True, blank=True, verbose_name="Код упаковки товара")
     code = models.CharField(max_length=256, null=True, blank=True, verbose_name="Код товара")
