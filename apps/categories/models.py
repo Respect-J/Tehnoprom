@@ -6,7 +6,7 @@ from models import BaseModel
 
 class Category(BaseModel):
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, verbose_name="Коллекция")
-    title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название")
+    title = models.CharField(max_length=256, verbose_name="Название")
     img = models.ImageField(upload_to="img/categories/", null=True, blank=True, verbose_name="Картинка")
     seo_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Ключ слово для СЕО")
     title_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Title слово для СЕО")

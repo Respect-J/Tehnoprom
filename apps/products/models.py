@@ -9,7 +9,7 @@ class Product(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория товара")
     brandcategory = models.ForeignKey(BrandForCategory, on_delete=models.CASCADE, verbose_name="Бренд категории товара")
     brands = models.ForeignKey(Brands, on_delete=models.CASCADE, verbose_name="Бренд")
-    title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название товара")
+    title = models.CharField(max_length=256, verbose_name="Название товара")
     description = models.TextField(null=True, blank=True, verbose_name="Описание товара")
     mainimg = models.ImageField(upload_to="img/products/", null=True, blank=True, verbose_name="Главная картинка")
     stock_quantity = models.PositiveIntegerField(null=True, blank=True, default=0,

@@ -4,7 +4,7 @@ from models import BaseModel
 
 
 class BrandForCategory(BaseModel):
-    title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название на русском")
+    title = models.CharField(max_length=256, verbose_name="Название на русском")
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="категория")
     logo = models.ImageField(upload_to="img/brands/", null=True, blank=True, verbose_name="Логотип")
     seo_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Ключ слово для СЕО")
@@ -19,7 +19,7 @@ class BrandForCategory(BaseModel):
 
 
 class Brands(BaseModel):
-    title = models.CharField(max_length=256, null=True, blank=True, verbose_name="Название на русском")
+    title = models.CharField(max_length=256, verbose_name="Название на русском")
     logo = models.ImageField(upload_to="img/brands/", null=True, blank=True, verbose_name="Логотип")
 
     def __str__(self):
