@@ -12,12 +12,12 @@ class CategoryListView(generics.ListAPIView):
     serializer_class = CategorySerializer
 
 
-class CategoriesByCollectionUUID(generics.ListAPIView):
+class CategoriesByCollectionSlug(generics.ListAPIView):
     serializer_class = CategorySerializer
 
     def get_queryset(self):
-        collection_id = self.kwargs["collection_id"]
-        collection = get_object_or_404(Collection, id=collection_id)
+        collection_slug = self.kwargs["collection_slug"]
+        collection = get_object_or_404(Collection, slug=collection_slug)
         return Category.objects.filter(collection=collection)
 
 
@@ -26,8 +26,8 @@ class CollectionCategoryBrandView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
 
         try:
-            uuid = kwargs.get('collection_id', None)
-            collection = Collection.objects.get(id=uuid)
+            collection_slug = self.kwargs["collection_slug"]
+            collection = get_object_or_404(Collection, slug=collection_slug)
         except Collection.DoesNotExist:
             raise Http404
 

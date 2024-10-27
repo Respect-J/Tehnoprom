@@ -35,8 +35,8 @@ class BrandCategoryProductListView(generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        brand_id = self.kwargs["brand_id"]
-        brand = get_object_or_404(BrandForCategory, id=brand_id)
+        brand_slug = self.kwargs["brand_slug"]
+        brand = get_object_or_404(BrandForCategory, slug=brand_slug)
         return Product.objects.filter(brandcategory_id=brand)
 
 
@@ -45,8 +45,8 @@ class CategoryProductListView(generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        category_id = self.kwargs["category_id"]
-        category = get_object_or_404(Category, id=category_id)
+        category_slug = self.kwargs["category_slug"]
+        category = get_object_or_404(Category, slug=category_slug)
         return Product.objects.filter(category=category)
 
 
@@ -55,8 +55,8 @@ class BrandProductListView(generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
-        brand_id = self.kwargs["brand_id"]
-        brand = get_object_or_404(Brands, id=brand_id)
+        brand_slug = self.kwargs["brand_slug"]
+        brand = get_object_or_404(Brands, slug=brand_slug)
         return Product.objects.filter(brands=brand)
 
 

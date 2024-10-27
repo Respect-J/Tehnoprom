@@ -10,12 +10,12 @@ class BrandListView(generics.ListAPIView):
     serializer_class = BrandCategorySerializer
 
 
-class BrandsByCategoriUUID(generics.ListAPIView):
+class BrandsByCategorySlug(generics.ListAPIView):
     serializer_class = BrandCategorySerializer
 
     def get_queryset(self):
-        category_id = self.kwargs["category_id"]
-        category = get_object_or_404(Category, id=category_id)
+        category_slug = self.kwargs["category_slug"]
+        category = get_object_or_404(Category, slug=category_slug)
         return BrandForCategory.objects.filter(category_id=category)
 
 
