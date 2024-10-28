@@ -20,14 +20,10 @@ class ProductListView(generics.ListAPIView):
     pagination_class = StandardResultsSetPagination
 
 
-class ProductRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+class ProductDetailBySlugView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
-    def get_permissions(self):
-        if self.request.method == "GET":
-            return [AllowAny()]
-        return [IsAdminUser()]
+    lookup_field = 'slug'
 
 
 class BrandCategoryProductListView(generics.ListAPIView):

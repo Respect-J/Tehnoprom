@@ -3,6 +3,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from apps.brands.models import BrandForCategory, Brands
 from apps.categories.models import Category
 from models import BaseModel
+from django.utils.text import slugify
 
 
 class Product(BaseModel):
@@ -11,17 +12,18 @@ class Product(BaseModel):
     brands = models.ForeignKey(Brands, on_delete=models.CASCADE, verbose_name="Бренд")
     title = models.CharField(max_length=256, verbose_name="Название товара")
     description = models.TextField(null=True, blank=True, verbose_name="Описание товара")
-    mainimg = models.ImageField(upload_to="img/products/", null=True, blank=True, verbose_name="Главная картинка")
+    mainimg = models.ImageField(upload_to="img/products/", verbose_name="Главная картинка")
     stock_quantity = models.PositiveIntegerField(null=True, blank=True, default=0,
                                                  verbose_name="Количество товара (не обязательно для заполнения)")
     discount_percent = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=0,
                                            verbose_name="Процент скидки")
     seo_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Ключ слово для СЕО")
     title_key = models.CharField(max_length=60, null=True, blank=True, verbose_name="Title слово для СЕО")
+    slug = models.SlugField(max_length=256, default="", blank=True, verbose_name=("Слаг"))
     # payment parameters
     package_code = models.CharField(max_length=256, null=True, blank=True, verbose_name="Код упаковки товара")
     code = models.CharField(max_length=256, null=True, blank=True, verbose_name="Код товара")
-    price = models.DecimalField(max_digits=100, decimal_places=2, null=True, blank=True, verbose_name="Цена товара")
+    price = models.DecimalField(max_digits=100, decimal_places=2, verbose_name="Цена товара")
     vat_percent = models.DecimalField(max_digits=2, decimal_places=0, null=True, blank=True, verbose_name="НДС")
 
     def __str__(self):
@@ -51,6 +53,11 @@ class Product(BaseModel):
         except (InvalidOperation, TypeError, ValueError):
 
             return self.price
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Товар"
