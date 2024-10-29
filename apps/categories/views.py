@@ -31,11 +31,12 @@ class CollectionCategoryBrandView(APIView):
         result = []
         for category in categories:
             brands = BrandForCategory.objects.filter(category_id=category)
-            brands_data = [{'brand_slug': brand.slug, 'brand_title': brand.title} for brand in brands]
+            brands_data = [{'brand_slug': brand.slug, 'brand_id': brand.id, 'brand_title': brand.title} for brand in brands]
 
             result.append({
                 'category_slug': category.slug,
                 'category_title': category.title,
+                'category_id': category.id,
                 'children': brands_data
             })
 
