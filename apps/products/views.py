@@ -5,8 +5,7 @@ from apps.brands.models import BrandForCategory, Brands
 from apps.categories.models import Category
 from .models import Product, PopularProduct, DayProduct
 from .serializers import ProductSerializer, PopularProductSerializer, DayProductSerializer
-from rest_framework.permissions import IsAdminUser, AllowAny
-
+from rest_framework.response import Response
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -56,12 +55,20 @@ class BrandProductListView(generics.ListAPIView):
         return Product.objects.filter(brands=brand)
 
 
-class PopularProductListView(generics.ListAPIView):
-    queryset = PopularProduct.objects.all()
+class PopularProductListView(generics.GenericAPIView):
     serializer_class = PopularProductSerializer
-    pagination_class = StandardResultsSetPagination
+    queryset = PopularProduct.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        popular_product = PopularProduct.objects.first()
+        if not popular_product:
+            return Response({"detail": "Нет популярных товаров"}, status=404)
+
+        serializer = self.get_serializer(popular_product)
+        return Response(serializer.data)
 
 
 class DayProductListView(generics.ListAPIView):
     queryset = DayProduct.objects.all()
     serializer_class = DayProductSerializer
+

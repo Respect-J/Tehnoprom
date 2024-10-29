@@ -17,11 +17,10 @@ class BrandForCategory(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = "Бренд для категории"
-        verbose_name_plural = "Бренд для категории"
+        verbose_name = "Подкатегории"
+        verbose_name_plural = "Подкатегории"
 
 
-# Генерация уникального slug для BrandForCategory
 def generate_unique_slug(instance, new_slug=None):
     slug = new_slug or slugify(instance.title)
     qs = BrandForCategory.objects.filter(slug=slug).exclude(id=instance.id)

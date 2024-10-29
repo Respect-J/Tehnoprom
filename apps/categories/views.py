@@ -5,7 +5,7 @@ from apps.brands.models import BrandForCategory
 from django.shortcuts import get_object_or_404
 from .serializers import CategorySerializer, PopularCategorySerializer
 from rest_framework.response import Response
-
+from rest_framework.views import APIView
 
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -21,29 +21,20 @@ class CategoriesByCollectionSlug(generics.ListAPIView):
         return Category.objects.filter(collection=collection)
 
 
-class CollectionCategoryBrandView(generics.ListAPIView):
-
+class CollectionCategoryBrandView(APIView):
     def get(self, request, *args, **kwargs):
-
-        try:
-            collection_slug = self.kwargs["collection_slug"]
-            collection = get_object_or_404(Collection, slug=collection_slug)
-        except Collection.DoesNotExist:
-            raise Http404
-
+        collection_slug = self.kwargs["collection_slug"]
+        collection = get_object_or_404(Collection, slug=collection_slug)
 
         categories = Category.objects.filter(collection=collection)
 
-
         result = []
         for category in categories:
-
             brands = BrandForCategory.objects.filter(category_id=category)
-            brands_data = [{'brand_id': brand.id, 'brand_title': brand.title} for brand in brands]
-
+            brands_data = [{'brand_slug': brand.slug, 'brand_title': brand.title} for brand in brands]
 
             result.append({
-                'category_id': category.id,
+                'category_slug': category.slug,
                 'category_title': category.title,
                 'children': brands_data
             })

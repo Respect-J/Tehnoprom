@@ -70,6 +70,11 @@ class PopularProduct(BaseModel):
     def __str__(self):
         return f"Группа популярных товаров"
 
+    def save(self, *args, **kwargs):
+        if not self.pk and PopularProduct.objects.exists():
+            raise ValueError("Только один экземпляр 'PopularProduct' может быть создан.")
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name = "Популярные товары"
         verbose_name_plural = "Популярные товары"
@@ -80,6 +85,11 @@ class DayProduct(BaseModel):
 
     def __str__(self):
         return f"Товары дня"
+
+    def save(self, *args, **kwargs):
+        if not self.pk and PopularProduct.objects.exists():
+            raise ValueError("Только один экземпляр 'PopularProduct' может быть создан.")
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Товар дня"

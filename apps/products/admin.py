@@ -3,7 +3,18 @@ from django.contrib import admin
 from .models import Product, PopularProduct, DayProduct
 
 admin.site.register(Product)
-admin.site.register(PopularProduct)
-admin.site.register(DayProduct)
 
-# Register your models here.
+
+@admin.register(PopularProduct)
+class PopularProductAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+
+        return not PopularProduct.objects.exists()
+
+
+@admin.register(DayProduct)
+class DayProductAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+
+        return not DayProduct.objects.exists()
+

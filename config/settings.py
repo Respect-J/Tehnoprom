@@ -27,7 +27,8 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY", "SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.getenv("DEBUG", 0))
+# DEBUG = bool(os.getenv("DEBUG", 0))
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
