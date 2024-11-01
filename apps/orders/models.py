@@ -31,5 +31,5 @@ class Order(BaseModel):
         return str(self.id)
 
     class Meta:
-        verbose_name = "Заказы"
+        verbose_name = "Заказ"
         verbose_name_plural = "Заказы"

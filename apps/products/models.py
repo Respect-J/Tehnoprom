@@ -76,7 +76,7 @@ class PopularProduct(BaseModel):
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = "Популярные товары"
+        verbose_name = "Популярный товар"
         verbose_name_plural = "Популярные товары"
 
 
@@ -93,4 +93,4 @@ class DayProduct(BaseModel):
 
     class Meta:
         verbose_name = "Товар дня"
-        verbose_name_plural = "Товар дня"
+        verbose_name_plural = "Товары дня"

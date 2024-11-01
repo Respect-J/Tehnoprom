@@ -15,8 +15,8 @@ class Collection(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = "коллекция"
-        verbose_name_plural = "коллекции"
+        verbose_name = "Коллекция"
+        verbose_name_plural = "Коллекции"
 
 
 def generate_unique_slug(instance, new_slug=None):

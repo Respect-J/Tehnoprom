@@ -11,8 +11,8 @@ class Characteric(BaseModel):
         return f"характеристики для товара {self.product}"
 
     class Meta:
-        verbose_name = "характеристики"
-        verbose_name_plural = "характеристики"
+        verbose_name = "Характеристика"
+        verbose_name_plural = "Характеристики"
 
 
 class CharacteristicItem(models.Model):
@@ -24,5 +24,5 @@ class CharacteristicItem(models.Model):
         return f"{self.name}: {self.value}"
 
     class Meta:
-        verbose_name = "характеристики"
-        verbose_name_plural = "характеристики"
+        verbose_name = "Характеристика"
+        verbose_name_plural = "Характеристики"

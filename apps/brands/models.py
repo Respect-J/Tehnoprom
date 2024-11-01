@@ -17,7 +17,7 @@ class BrandForCategory(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = "Подкатегории"
+        verbose_name = "Подкатегория"
         verbose_name_plural = "Подкатегории"
 
 
