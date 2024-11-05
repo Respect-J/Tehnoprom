@@ -17,8 +17,8 @@ class Category(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = "категория"
-        verbose_name_plural = "категории"
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
 
 
 
@@ -40,10 +40,10 @@ pre_save.connect(pre_save_category_receiver, sender=Category)
 
 
 class PopularCategory(BaseModel):
-    categorys = models.ManyToManyField(Category, verbose_name="популярные категории")
+    categorys = models.ManyToManyField(Category, verbose_name="Популярные категории")
 
     def __str__(self):
-        return f"Группа популярных категория"
+        return f"Группа популярных категорий"
 
     class Meta:
         verbose_name = "Популярные категории"

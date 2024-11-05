@@ -19,5 +19,5 @@ class ProductIMG(BaseModel):
         return f"Доп. фото для товара {self.product_id.title}"
 
     class Meta:
-        verbose_name = "Фото товаров"
+        verbose_name = "Фото товара"
         verbose_name_plural = "Фото товаров"
