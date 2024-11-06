@@ -17,5 +17,6 @@ class ProductimegesListView(generics.ListAPIView):
     serializer_class = ProductIMGSerializer
 
     def get_queryset(self):
-        product_id = self.kwargs["product_id"]
-        return ProductIMG.objects.filter(product_id=product_id)
+        product_slug = self.kwargs["product_slug"]
+        product = get_object_or_404(Product, slug=product_slug)
+        return ProductIMG.objects.filter(product_id=product)

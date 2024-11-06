@@ -9,6 +9,6 @@ class CharactericView(generics.ListAPIView):
     serializer_class = CharactericSerializer
 
     def get_queryset(self):
-        product_id = self.kwargs["product_id"]
-        a = get_object_or_404(Product, id=product_id)
-        return Characteric.objects.filter(product_id=a)
+        product_slug = self.kwargs["product_slug"]
+        product = get_object_or_404(Product, slug=product_slug)
+        return Characteric.objects.filter(product=product)
