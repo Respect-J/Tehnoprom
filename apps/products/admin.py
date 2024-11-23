@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 from .models import Product, PopularProduct, DayProduct
-
-admin.site.register(Product)
+from apps.characteristics.models import Characteric
+from apps.collection_images.models import ProductIMG
 
 
 @admin.register(PopularProduct)
@@ -18,3 +18,18 @@ class DayProductAdmin(admin.ModelAdmin):
 
         return not DayProduct.objects.exists()
 
+
+class CharactericInline(admin.StackedInline):
+    model = Characteric
+    extra = 1
+
+
+
+class ProductIMGInline(admin.TabularInline):
+    model = ProductIMG
+    extra = 1
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [CharactericInline, ProductIMGInline]
