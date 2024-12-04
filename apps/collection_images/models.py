@@ -8,7 +8,7 @@ from models import BaseModel
 class ProductIMG(BaseModel):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="выберите товар")
     img = models.ImageField(
-        upload_to="img/productIMG/", null=True, validators=[FileExtensionValidator(["jpg", "jpeg", "png"])],
+        upload_to="img/productIMG/", null=True, validators=[FileExtensionValidator(["jpg", "jpeg", "png", "webp"])],
         verbose_name="Картинка"
     )
 
