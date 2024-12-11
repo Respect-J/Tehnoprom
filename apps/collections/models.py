@@ -9,6 +9,7 @@ from models import BaseModel
 class Collection(BaseModel):
     title = models.CharField(max_length=256, verbose_name=_("Название"))
     slug = models.SlugField(max_length=256, default="", blank=True, verbose_name=_("Слаг"))
+    priority = models.IntegerField(default=1)
     img = models.ImageField(upload_to="img/collections/", null=True, blank=True, verbose_name=_("Картинка"))
 
     def __str__(self):

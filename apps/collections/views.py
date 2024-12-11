@@ -4,6 +4,6 @@ from .serializers import CollectionSerializer
 
 
 class CollectionListView(generics.ListAPIView):
-    queryset = Collection.objects.all()
+    queryset = Collection.objects.order_by('priority')
     serializer_class = CollectionSerializer
 
