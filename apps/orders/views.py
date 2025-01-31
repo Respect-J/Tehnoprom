@@ -1,20 +1,26 @@
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CreateOrderSerializer, OrderSerializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
 from .models import Order
+from apps.users.models import UserModel
 
 
 class CreateOrderView(CreateAPIView):
+
     queryset = Order.objects.all()
     permission_classes = [IsAuthenticated]
     serializer_class = CreateOrderSerializer
 
+    def perform_create(self, serializer):
+        """Привязываем заказ к текущему пользователю (UserModel)"""
+        user = UserModel.objects.get(id=self.request.user.id)
+        serializer.save(user=user)
 
-class UserOrdersView(APIView):
-    def get(self, request, user_id, format=None):
-        orders = Order.objects.filter(user_id=user_id)
-        serializer = OrderSerializer(orders, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class UserOrdersView(ListAPIView):
+
+    serializer_class = OrderSerializer
+    # permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)

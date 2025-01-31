@@ -1,15 +1,18 @@
 from django.contrib import admin
-from .models import Order
+from .models import Order, OrderItem
 
 
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
+
+
+
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    readonly_fields = ('id', 'user', 'phone_number', 'amount', 'delivery_address', 'is_paid', )  # замените на ваши поля
+    list_display = ('id', 'user', 'status', 'is_paid', 'amount')
+    search_fields = ['id']         # поиск по 6-значному номеру
+    list_filter = ['status', 'is_paid']  # фильтрация по статусу и оплате
+    inlines = [OrderItemInline]    # прикрепляем inline для позиций заказа
 
-    def has_add_permission(self, request):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-
-admin.site.register(Order, OrderAdmin)
