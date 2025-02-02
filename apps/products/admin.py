@@ -32,4 +32,7 @@ class ProductIMGInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'brandcategory', 'brands', 'price')
+    list_filter = ('category', 'brandcategory', 'brands',)
+    search_fields = ('title',)
     inlines = [CharactericInline, ProductIMGInline]
