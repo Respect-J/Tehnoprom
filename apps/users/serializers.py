@@ -30,7 +30,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
         verification_code = str(randint(100000, 999999))
         user.verification_code = verification_code
 
-
         if send_verification_sms(user.phone_number, verification_code):
             user.save()
         else:
