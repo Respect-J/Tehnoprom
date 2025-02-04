@@ -22,7 +22,7 @@ class UserModel(User):
     def __str__(self):
         return self.username
 
-    def check_and_update_premium_status(self):
+    def reset_premium(self):
         """
         Проверяет, не истекла ли дата премиум-подписки. Если истекла,
         сбрасывает флаг is_premium и сохраняет модель.
