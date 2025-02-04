@@ -19,5 +19,7 @@ class CustomUserAdmin(UserAdmin):
         "last_name",
         "is_active",
         "is_phone_verified",
-        "phone_number"
+        "phone_number",
+        "is_premium",
+        "premium_end_date"
     ]
