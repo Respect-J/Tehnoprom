@@ -9,7 +9,7 @@ from .models import UserModel
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ["id", "username", "mainimg", "created_at", "updated_at"]
+        fields = ["id", "username", "mainimg", "created_at", "updated_at", "is_premium", "premium_end_date"]
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -29,7 +29,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
         verification_code = str(randint(100000, 999999))
         user.verification_code = verification_code
-
 
         if send_verification_sms(user.phone_number, verification_code):
             user.save()

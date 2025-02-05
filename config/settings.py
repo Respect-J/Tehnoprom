@@ -118,6 +118,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+# настройки celery
+CELERY_BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
