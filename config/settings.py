@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_yasg",
-    'django.contrib.postgres',
-    'django_json_widget',
+    "django.contrib.postgres",
+    "django_json_widget",
     "payme",
     "apps.banners",
     "apps.collections",
@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     "apps.users",
     "apps.orders",
     "apps.characteristics",
-    'apps.installment'
+    "apps.installment",
+    "apps.tariffs"
 ]
 
 MIDDLEWARE = [

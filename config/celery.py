@@ -1,4 +1,3 @@
-# config/celery.py
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import Celery
@@ -18,7 +17,8 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'check_premium': {
         'task': 'apps.users.tasks.check_expired_premium',
-        'schedule':  crontab(hour="3", minute="30", day_of_week="7"),  # время проверки
+        'schedule': crontab(minute='*/2')
+       # 'schedule':  crontab(hour="3", minute="30", day_of_week="1"),  # время проверки
 
     },
 }
