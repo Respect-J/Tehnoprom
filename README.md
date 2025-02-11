@@ -18,3 +18,10 @@ Run the server: `docker-compose up` and access on: _http://localhost:8000/admin_
 -----------------------
 In order to re-run:
 `git pull` and `docker-compose up --build`
+
+
+
+
+
+celery -A config worker -l info
+celery -A config beat -l info

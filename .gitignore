@@ -9,6 +9,7 @@ tmp/
 # C extensions
 *.so
 media/
+img/
 static/
 # Distribution / packaging
 .Python
