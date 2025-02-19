@@ -1,5 +1,7 @@
 import random
+
 from django.db import models
+
 from apps.products.models import Product
 from apps.users.models import UserModel
 from models import BaseModel
@@ -7,18 +9,13 @@ from models import BaseModel
 
 class Order(BaseModel):
     # Переопределяем id на CharField длиной 6
-    id = models.CharField(
-        max_length=6,
-        primary_key=True,
-        editable=False,
-        unique=True
-    )
+    id = models.CharField(max_length=6, primary_key=True, editable=False, unique=True)
 
     STATUS_CHOICES = [
-        (1, 'Заказ принят'),
-        (2, 'Заказ одобрен'),
-        (3, 'Заказ в пути'),
-        (4, 'Заказ доставлен'),
+        (1, "Заказ принят"),
+        (2, "Заказ одобрен"),
+        (3, "Заказ в пути"),
+        (4, "Заказ доставлен"),
     ]
 
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, verbose_name="Клиент")
@@ -27,6 +24,7 @@ class Order(BaseModel):
     is_paid = models.BooleanField(default=False, verbose_name="Статус оплаты")
     status = models.IntegerField(choices=STATUS_CHOICES, default=1, verbose_name="Статус заказа")
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Общая сумма заказа")
+    temp = models.CharField(max_length=13, blank=True)
 
     def calculate_total_amount(self):
         """Пересчитывает сумму заказа"""
@@ -44,8 +42,8 @@ class Order(BaseModel):
 
     def save(self, *args, **kwargs):
         """Перед сохранением:
-           - если id ещё не задан, генерируем случайный 6-значный.
-           - пересчитываем сумму заказа.
+        - если id ещё не задан, генерируем случайный 6-значный.
+        - пересчитываем сумму заказа.
         """
         if not self.id:
             self.id = self.generate_unique_id()
