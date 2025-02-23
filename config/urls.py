@@ -42,6 +42,7 @@ urlpatterns = [
     path('installment', include("apps.installment.urls")),
     path("characteristics/", include("apps.characteristics.urls")),
     path("premium/", include("apps.tariffs.urls")),
+    path("wallet/", include("apps.wallets.urls")),
     path("payments/merchant/", PaymeCallBackAPIView.as_view()),
     path("pay-link/", GeneratePayLinkAPIView.as_view()),
     re_path(r"^swagger(?P<format>\.json|\.yaml)$", schema_view.without_ui(cache_timeout=0), name="schema-json"),

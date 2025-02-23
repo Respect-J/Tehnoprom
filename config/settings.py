@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     "apps.orders",
     "apps.characteristics",
     "apps.installment",
-    "apps.tariffs"
+    "apps.tariffs",
+    "apps.wallets",
 ]
 
 MIDDLEWARE = [
