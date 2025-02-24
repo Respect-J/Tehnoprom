@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "django_json_widget",
     "payme",
+    "pyclick",
     "apps.banners",
     "apps.collections",
     "apps.categories",
