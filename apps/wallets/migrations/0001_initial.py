@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('users', '0007_usermodel_is_premium_usermodel_premium_end_date'),
+        ("users", "0008_remove_usermodel_is_premium_and_more"),
     ]
 
     operations = [
