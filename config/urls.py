@@ -41,7 +41,6 @@ urlpatterns = [
     path("uzum/", include("apps.payment.uzum.urls")),
     path("installment", include("apps.installment.urls")),
     path("characteristics/", include("apps.characteristics.urls")),
-    path("premium/", include("apps.tariffs.urls")),
     path("wallet/", include("apps.wallets.urls")),
     path("payments/merchant/", PaymeCallBackAPIView.as_view()),
     path("payments/click/", include("apps.payment.click.urls")),
